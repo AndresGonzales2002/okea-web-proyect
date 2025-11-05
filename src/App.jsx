@@ -17,30 +17,40 @@ import Cart from './components/Cart';
 function App() {
   return (
     <CartProvider>
-    <Router>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <SocialBar />
-        <FloatingActionButton />
-        
-        <Routes>
-          <Route
-            path="/"element={<>
-                <Home />
-                <MarcasDestacadas />
-                <PreguntasFrecuentes />
-                <BloqueDeServicios />
-              </>
-            }
-          />
-          <Route path="/Producto/:id" element={<DetailsProduct />} />
-          <Route path="/carrito" element={<Cart />} />
+      <Router>
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col">
 
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+          {/* Oculta el Navbar en pantallas ≤ 412px */}
+          <div className="max-[412px]:hidden">
+            <Navbar />
+          </div>
+
+          <SocialBar />
+          <FloatingActionButton />
+
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Home />
+                  <MarcasDestacadas />
+                  <PreguntasFrecuentes />
+                  <BloqueDeServicios />
+                </>
+              }
+            />
+            <Route path="/Producto/:id" element={<DetailsProduct />} />
+            <Route path="/carrito" element={<Cart />} />
+          </Routes>
+
+          {/* Oculta el Footer en pantallas ≤ 412px */}
+          <div className="max-[412px]:hidden">
+            <Footer />
+          </div>
+        </div>
+      </Router>
     </CartProvider>
   );
 }
